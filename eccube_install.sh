@@ -167,7 +167,7 @@ dtb_tax_rule_tax_rule_id_seq
             echo ${comb_sql} | sudo -u ${PGUSER} ${PSQL} -U ${DBUSER} ${DBNAME}
         ;;
         mysql)
-            echo ${comb_sql} | ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME}
+            echo ${comb_sql} | ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME} -h ${DBSERVER} 
         ;;
     esac
 }
@@ -258,21 +258,21 @@ case "${DBTYPE}" in
     fi
     # MySQL
     echo "dropdb..."
-    ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -e "drop database \`${DBNAME}\`"
+    ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "drop database \`${DBNAME}\`"
     echo "createdb..."
-    ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -e "create database \`${DBNAME}\`"
+    ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "create database \`${DBNAME}\`"
     #echo "grant user..."
-    #${MYSQL} -u ${ROOTUSER} ${PASSOPT} -e "GRANT ALL ON \`${DBNAME}\`.* TO '${DBUSER}'@'%' IDENTIFIED BY '${DBPASS}'"
+    #${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "GRANT ALL ON \`${DBNAME}\`.* TO '${DBUSER}'@'%' IDENTIFIED BY '${DBPASS}'"
     echo "create table..."
     echo "SET SESSION storage_engine = InnoDB;" |
         cat - ${SQL_DIR}/create_table_mysql.sql |
         ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME}
     echo "insert data..."
-    ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME} < ${SQL_DIR}/insert_data.sql
+    ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME} -h ${DBSERVER} < ${SQL_DIR}/insert_data.sql
     echo "create sequence table..."
     create_sequence_tables
     echo "execute optional SQL..."
-    get_optional_sql | ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME}
+    get_optional_sql | ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME} -h ${DBSERVER} 
 ;;
 esac
 
