@@ -36,6 +36,9 @@ ROOT_URLPATH=${ROOT_URLPATH:-"/"}
 DOMAIN_NAME=${DOMAIN_NAME:-""}
 ADMIN_DIR=${ADMIN_DIR:-"admin/"}
 
+echo $DBSERVER
+echo "before****"
+
 DBSERVER=${DBSERVER-"127.0.0.1"}
 DBNAME=${DBNAME:-"cube213_dev"}
 DBUSER=${DBUSER:-"cube213_dev_user"}
@@ -43,6 +46,9 @@ DBPASS=${DBPASS:-"password"}
 
 ADMINPASS="f6b126507a5d00dbdbb0f326fe855ddf84facd57c5603ffdf7e08fbb46bd633c"
 AUTH_MAGIC="droucliuijeanamiundpnoufrouphudrastiokec"
+
+echo $DBSERVER
+echo "after****"
 
 DBTYPE=$1;
 
