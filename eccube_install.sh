@@ -263,8 +263,8 @@ case "${DBTYPE}" in
     ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "drop database \`${DBNAME}\`"
     echo "createdb..."
     ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "create database \`${DBNAME}\`"
-    #echo "grant user..."
-    #${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "GRANT ALL ON \`${DBNAME}\`.* TO '${DBUSER}'@'%' IDENTIFIED BY '${DBPASS}'"
+    echo "grant user..."
+    ${MYSQL} -u ${ROOTUSER} ${PASSOPT} -h ${DBSERVER} -e "GRANT ALL ON \`${DBNAME}\`.* TO '${DBUSER}'@'%' IDENTIFIED BY '${DBPASS}'"
     echo "create table..."
     echo "SET SESSION storage_engine = InnoDB;" |
         cat - ${SQL_DIR}/create_table_mysql.sql |
