@@ -268,7 +268,7 @@ case "${DBTYPE}" in
     echo "create table..."
     echo "SET SESSION storage_engine = InnoDB;" |
         cat - ${SQL_DIR}/create_table_mysql.sql |
-        ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME}
+        ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME} -h ${DBSERVER}
     echo "insert data..."
     ${MYSQL} -u ${DBUSER} ${PASSOPT} ${DBNAME} -h ${DBSERVER} < ${SQL_DIR}/insert_data.sql
     echo "create sequence table..."
