@@ -40,6 +40,8 @@ DBSERVER=${DBSERVER-"127.0.0.1"}
 DBNAME=${DBNAME:-"cube213_dev"}
 DBUSER=${DBUSER:-"cube213_dev_user"}
 DBPASS=${DBPASS:-"password"}
+ROOTUSER=${ROOTUSER:-"root"}
+DBPORT=${DBPORT:-3306}
 
 ADMINPASS="f6b126507a5d00dbdbb0f326fe855ddf84facd57c5603ffdf7e08fbb46bd633c"
 AUTH_MAGIC="droucliuijeanamiundpnoufrouphudrastiokec"
@@ -66,10 +68,10 @@ case "${DBTYPE}" in
 "mysql" )
     #-- DB Seting MySQL
     MYSQL=mysql
-    ROOTUSER=root
+    ROOTUSER=${ROOTUSER}
     ROOTPASS=${DBPASS}
     DBSERVER=${DBSERVER}
-    DBPORT=3306
+    DBPORT=${DBPORT}
 ;;
 * ) echo "ERROR:: argument is invaid"
 exit
